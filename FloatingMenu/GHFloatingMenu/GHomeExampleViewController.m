@@ -7,10 +7,7 @@
 //
 
 #import "GHomeExampleViewController.h"
-#import "MJRefresh.h"
-
-#define kWidth [UIScreen mainScreen].bounds.size.width
-#define KHeight [UIScreen mainScreen].bounds.size.height
+#import "GHomeExampleCell.h"
 
 @interface GHomeExampleViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -18,7 +15,6 @@
  *  头部
  */
 @property (nonatomic , strong) UIView *header;
-
 
 /**
  *  悬浮Menu
@@ -32,6 +28,16 @@
 @end
 
 @implementation GHomeExampleViewController
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,8 +74,8 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCellID" forIndexPath:indexPath];
-    cell.backgroundColor = KMainColor;
+    GHomeExampleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GHomeExampleCellID" forIndexPath:indexPath];
+    cell.title.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
     return cell;
 }
 
@@ -108,7 +114,7 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = [UIColor whiteColor];
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCellID"];
+        [_collectionView registerClass:[GHomeExampleCell class] forCellWithReuseIdentifier:@"GHomeExampleCellID"];
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
         weakself(self);

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GHomeExampleViewController.h"
+#import "GHViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,8 +20,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     UIWindow *window = [[UIWindow alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    GHomeExampleViewController *vc = [[GHomeExampleViewController alloc]init];
-    window.rootViewController = vc;
+    GHViewController *vc = [[GHViewController alloc]init];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    window.rootViewController = nav;
     [window makeKeyAndVisible];
     self.window = window;
     

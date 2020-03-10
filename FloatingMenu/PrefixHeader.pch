@@ -9,6 +9,10 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+
+#define kWidth [UIScreen mainScreen].bounds.size.width
+#define KHeight [UIScreen mainScreen].bounds.size.height
+
 #define StrValid(f)         (f!=nil && [f isKindOfClass:[NSString class]] && ![f isEqualToString:@""])
 
 #define ValidStr(f)         StrValid(f)
@@ -53,5 +57,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define KMainColor UIColorFromRGB(0x017fff)
 
 #import "UIView+Extension.h"
+#import "MJRefresh.h"
+#import "Masonry.h"
 
 #endif /* PrefixHeader_pch */
